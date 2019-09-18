@@ -18,13 +18,18 @@
     http://www.springframework.org/schema/context/spring-context-3.2.xsd
     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	
-	<bean id="germAbbrPrintToken" class="com.krishagni.openspecimen.plugin.token.SpecimenBacteriaGermAbbPrintToken">
+	<bean id="lisGermCodePrintToken" class="com.krishagni.openspecimen.plugin.token.SpecimenBacteriaLISGermCodePrintToken">
+		<property name="formDao" ref="formDao"/>
+  	</bean>
+  	
+  	<bean id="lisDayNumberPrintToken" class="com.krishagni.openspecimen.plugin.token.SpecimenBacteriaLISDayNumberPrintToken">
 		<property name="formDao" ref="formDao"/>
   	</bean>
 	
 	<bean id="pluginInitializer" class="com.krishagni.openspecimen.plugin.init.PluginInitializer">
 	  <property name="specimenPrintLabelTokensRegistrar" ref="specimenPrintLabelTokensRegistrar"/>
-	  <property name="germAbbrPrintToken" ref="germAbbrPrintToken"/>
+	  <property name="lisGermCodePrintToken" ref="lisGermCodePrintToken"/>
+	  <property name="lisDayNumberPrintToken" ref="lisDayNumberPrintToken"/>
 	</bean>
 
 </beans>

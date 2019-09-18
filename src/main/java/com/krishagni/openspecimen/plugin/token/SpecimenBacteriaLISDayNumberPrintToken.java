@@ -17,7 +17,7 @@ import edu.common.dynamicextensions.napi.FormData;
 import edu.common.dynamicextensions.napi.FormDataManager;
 import edu.common.dynamicextensions.napi.impl.FormDataManagerImpl;
 
-public class SpecimenBacteriaGermAbbPrintToken extends AbstractLabelTmplToken implements LabelTmplToken {
+public class SpecimenBacteriaLISDayNumberPrintToken extends AbstractLabelTmplToken implements LabelTmplToken {
 	 
 	private FormDao formDao;
 
@@ -28,13 +28,13 @@ public class SpecimenBacteriaGermAbbPrintToken extends AbstractLabelTmplToken im
 		this.formDao = formDao;
 	}	 	
 
-	public SpecimenBacteriaGermAbbPrintToken() {
+	public SpecimenBacteriaLISDayNumberPrintToken() {
 
 	}
 
 	@Override
     public String getName() {
-        return "specimen_bacteria_germ_abbr";
+        return "specimen_bacteria_lis_day_number";
     }
  
     @Override
@@ -81,7 +81,7 @@ public class SpecimenBacteriaGermAbbPrintToken extends AbstractLabelTmplToken im
         // Step 5: Retrieve the field value that we are interested in
         // i.e. destructionDate
         //
-        ControlValue value = formData.getFieldValue("DD2");
+        ControlValue value = formData.getFieldValue("ST8");
 
         return value.toString();
     }
