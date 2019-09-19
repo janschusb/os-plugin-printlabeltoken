@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Configurable;
 import com.krishagni.catissueplus.core.administrative.domain.ScheduledJobRun;
 import com.krishagni.catissueplus.core.administrative.services.ScheduledTask;
 import com.krishagni.catissueplus.core.common.PlusTransactional;
-import com.krishagni.openspecimen.plugin.job.mlab.OS_USB_BacteriaAutoCompletionJob_RESTAPI;
 
 @Configurable
 public class USBBacteriaSpecimenJob implements ScheduledTask {

@@ -1,4 +1,4 @@
-package com.krishagni.openspecimen.plugin.job.mlab;
+package com.krishagni.openspecimen.plugin.job;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -26,7 +26,7 @@ public class OS_USB_BacteriaAutoCompletionJob_RESTAPI {
 
 	private static RestTemplate template = new RestTemplate();
 	
-	private static final String API_BASE_URL = "http://dev.lab.biobank.usb.ch/rest/ng";
+	private static final String API_BASE_URL = "http://localhost/rest/ng";
 	
 	
 	public void doBacteriaSpecimensAutoCompletion() {	
