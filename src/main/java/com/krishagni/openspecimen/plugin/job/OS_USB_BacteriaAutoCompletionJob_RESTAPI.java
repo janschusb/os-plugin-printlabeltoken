@@ -1,7 +1,5 @@
 package com.krishagni.openspecimen.plugin.job;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
@@ -19,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+import com.krishagni.catissueplus.core.common.util.ConfigUtil;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -26,7 +25,8 @@ public class OS_USB_BacteriaAutoCompletionJob_RESTAPI {
 
 	private static RestTemplate template = new RestTemplate();
 	
-	private static final String API_BASE_URL = "http://localhost/rest/ng";
+	private static final String API_BASE_URL = ConfigUtil.getInstance().getStrSetting("common","app_url",null)+"/rest/ng";
+			//"http://localhost/rest/ng";
 	
 	
 	public void doBacteriaSpecimensAutoCompletion() {	
@@ -53,12 +53,13 @@ public class OS_USB_BacteriaAutoCompletionJob_RESTAPI {
 							long createdOn = Long.parseLong(spcm.get("createdOn").toString());		
 							long spcmId = Long.parseLong(spcm.get("id").toString());	
 							String spcmLabel = spcm.get("label").toString();
+							String spcmType = spcm.get("type").toString();
 							long current = System.currentTimeMillis();
 			            	long oneDay = 1000 * 60 * 60 * 24;
 			            	boolean spmcLast24Hours = false;
 			            	spmcLast24Hours= current-createdOn < oneDay;	            	
 			            	// continue if specimen was created in last 24 hours and update NCBI details
-			            	if(spmcLast24Hours) {
+			            	if(spmcLast24Hours && spcmType.equalsIgnoreCase("Bacteria")) {
 			            		
 			            		Map<String, Object> spcmDetails = getSpecimenDetails(token, spcmId);		           		
 			            		Map<String, Object> extension = (Map<String, Object>) spcmDetails.get("extensionDetail");		            		
