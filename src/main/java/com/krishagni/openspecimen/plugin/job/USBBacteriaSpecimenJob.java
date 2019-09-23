@@ -12,9 +12,10 @@ public class USBBacteriaSpecimenJob implements ScheduledTask {
 	@Override
 	@PlusTransactional
 	public void doJob(ScheduledJobRun arg0) throws Exception {
-		System.out.println("Executing USBBacteriaSpecimenJob");
+		System.out.println("Executing USBBacteriaSpecimenJob started");
 		OS_USB_BacteriaAutoCompletionJob_RESTAPI USBBacteriaJob = new OS_USB_BacteriaAutoCompletionJob_RESTAPI();
 		USBBacteriaJob.doBacteriaSpecimensAutoCompletion();
+		System.out.println("Executing USBBacteriaSpecimenJob ended with success");
 	}
 	
 	

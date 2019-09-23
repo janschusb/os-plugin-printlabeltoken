@@ -71,10 +71,13 @@ public class OS_USB_BacteriaAutoCompletionJob_RESTAPI {
 			            		String mLabGermCode = (String) extensionAttr.get(1).get("value");
 			            		String mLabNumber = (String) extensionAttr.get(8).get("value");	  	
 			            		long ncbiTaxDDID = 0;
-			            		for(int z = 0; z < ncbiTaxJson.length(); z++) {
-			            			if(ncbiTaxJson.getJSONObject(z).getString("value").equalsIgnoreCase(mLabGermCode)) {
-			            				ncbiTaxDDID = ncbiTaxJson.getJSONObject(z).getLong("id");
-			            			}		            			
+			            		
+			            		if(mLabGermCode!=null && !mLabGermCode.equalsIgnoreCase("")) {
+				            		for(int z = 0; z < ncbiTaxJson.length(); z++) {
+				            			if(ncbiTaxJson.getJSONObject(z).getString("value").equalsIgnoreCase(mLabGermCode)) {
+				            				ncbiTaxDDID = ncbiTaxJson.getJSONObject(z).getLong("id");
+				            			}		            			
+				            		}
 			            		}
 			            		
 			            		if(ncbiTaxDDID != 0) {
@@ -94,7 +97,8 @@ public class OS_USB_BacteriaAutoCompletionJob_RESTAPI {
 				            		extensionDetails.put("formId", formId);
 				            		extensionDetails.put("formCaption", formCaption);
 				            		
-				            		if (mLabNumber.startsWith(year+"-"))
+				            		
+				            		if (mLabNumber==null || mLabNumber.equalsIgnoreCase("") || mLabNumber.startsWith(year+"-"))
 				            			dynamicSize--;
 				            			
 				            		
@@ -116,7 +120,7 @@ public class OS_USB_BacteriaAutoCompletionJob_RESTAPI {
 				            	
 				            		
 				            		
-				            		if (!mLabNumber.startsWith(year+"-")) {			            		
+				            		if (mLabNumber!=null && !mLabNumber.equalsIgnoreCase("") && !mLabNumber.startsWith(year+"-")) {			            		
 					            		HashMap<String, Object> st8 = new HashMap<>();		
 					            		st8.put("name", "ST8");
 					            		st8.put("udn", "usb_lis_day_number_3");
